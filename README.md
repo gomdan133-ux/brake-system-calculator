@@ -84,6 +84,14 @@ tests/            pytest suite
 examples/         worked example
 ```
 
+## How this was built
+
+1. **Started from shop work.** I took the brake jobs I do as an ASE Brakes certified tech (pedal feel, pulls, pulsation, pad wear) and traced each one back to the physics behind it.
+2. **Split the system into stages.** I wrote one small module per stage, in the order force travels: pedal and master cylinder (`hydraulics.py`), caliper and rotor (`torque.py`), tire and road (`stopping.py`), heat (`thermal.py`), and pad wear (`wear.py`). Every function uses SI units and rejects invalid inputs.
+3. **Checked the formulas by hand.** I worked each test value out by hand first, for example the 60 mph stopping distance at 0.8 g, then wrote 17 pytest tests to check the code against those numbers, including invalid-input cases. All tests pass.
+4. **Added a worked example.** `examples/full_system.py` runs a full panic stop for a midsize sedan, and the output shown in this README comes from actually running it.
+5. **Documented the takeaways.** I wrote down what the numbers mean in the shop, such as tire grip, not the brakes, limiting a healthy system, and the v² effect of speed.
+
 ## License
 
 MIT
